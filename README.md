@@ -1,2 +1,2 @@
-# CS117
-C++ for Engineers
+# CS117 C++ for Engineers
+
