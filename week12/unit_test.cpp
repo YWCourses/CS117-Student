@@ -3,16 +3,23 @@
 using namespace std;
 
 /* TODO: Generate the grade in letter 
+ * Function call: finalGrade = GenerateFinalGrade(finalPoint);
  */
+char GenerateFinalGrade(double finalPoint) {
+   char finalGrade = '-';
+
+   return finalGrade;
+}
 
 
 int main() {
-   double finalPoint = 40.4;
+   double point = 40.4;
 
-   /* Generate the grade in letter */
+   /* TODO: Generate the grade in letter */
    char finalGrade = '-';
-   finalGrade = GenerateFinalGrade(finalPoint);
-   cout << "Final grade is " << finalPoint << " / " << finalGrade << endl;
+   finalGrade = GenerateFinalGrade(point);
+   cout << "Final grade is " << point << " / " << finalGrade << endl;
 
    return 0;
 }
+
