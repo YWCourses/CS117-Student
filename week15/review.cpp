@@ -1,105 +1,73 @@
+/* Design of a review: 
+ * Review on a dish as an object -- decribe it using a classs data type
+ *    data / variables: string revName, int revRating, string revComment
+ *    operations / functions: 
+         modification: SetName, SetRating, SetComment (combined as SetReview)
+         access: GetName, GetRating, GetComment, PrintReview
+
+ * FIXME: add a function for SetPrice
+ */
+
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
+/* Implement review as a class */
 class Review {
-   public:
-      Review();
-      void SetReview(string revDish, int revRating, string revComment);
-      string GetDish() const;
-      int GetRating() const;
-      string GetComment() const;
-      void PrintReiview();
+   public: // functions or operations are defined as public
+      Review(); // for constructor
+      // Mutator functions: modify the data (setter)
+      void SetReview(string dishName, int dishRating, string dishComment); // declaration
+      // accessor functions: access data only, no modification (getter)
+      void PrintReview();
 
-   private:
-      string dish;
-      int rating;
-      string comment;
+   private: // private data are not accessible outside of the class
+      string revName;
+      int revRating;
+      string revComment;
 };
-
-void Review::SetReview(string revDish, int revRating, string revComment) {
-   dish = revDish;
-   rating = revRating;
-   comment = revComment;
+/* Constructor: initialize the private data in class
+ *    - the constuctor's name is the same as the class
+ *    - add class in public as well
+ *    - no return datatype
+ */
+Review::Review() {
+   revName = "no name";
+   revRating = -1;
+   revComment = "no comment";
 }
 
-string Review::GetDish() const { 
-   return dish; 
+// define the functions for class Review
+void Review::SetReview(string dishName, int dishRating, string dishComment) {
+   revName = dishName;
+   revRating = dishRating;
+   revComment = dishComment;
 }
-int Review::GetRating() const { 
-   return rating; 
-}
-string Review::GetComment() const { 
-   return comment; 
-}
-void Review::PrintReiview() {
-   cout << dish << ": rating " << rating << "; comment: " << comment << endl;
+void Review::PrintReview() {
+   cout << revName << ": rating " << revRating << "; comment: " << revComment << endl;
 }
 
-Review::Review() {  // Default constructor
-   dish = "NoName";         // Default name: NoName indicates name was not set
-   rating = -1;             // Default rating: -1 indicates rating was not set
-   string comment = "NoComment";
-}
-
-// END Review class
-
-
-class Reviews {
-   public: 
-      void InputReviews();
-      void PrintAllReviews() const;
-      // int GetAverageRating() const; // FIXME: implement this function
-   private:
-      vector<Review> reviewList;
-};
-
-void Reviews::InputReviews() {
-   string status = "exit";
-   Review dishReview; 
-   string currDish;
-   string currComment;
-   int currRating;
-
-   cout << "Enter Status (option: edit, exit): " << endl;
-   getline(cin >> ws, status);
-   while (status == "edit") {
-      cout << "Enter the dish: ";
-      getline(cin >> ws, currDish);
-      cout << "Enter the rating: ";
-      cin >> currRating;
-      cout << "Enter the comment: ";
-      getline(cin >> ws, currComment);
-      dishReview.SetReview(currDish, currRating, currComment);
-      reviewList.push_back(dishReview);
-
-      cout << "Enter Status (option: edit, exit): " << endl;
-      getline(cin >> ws, status);
-   }
-}
-
-void Reviews::PrintAllReviews() const {
-   Review dishReview;
-   cout << endl << "Review Summary: " << endl;
-   if (reviewList.size() == 0) {
-      cout << "(Empty)" << endl;
-   }
-   else {
-      for (size_t i = 0; i < reviewList.size(); i++) {
-         dishReview = reviewList.at(i);
-         dishReview.PrintReiview();
-      }
-   }
-}
-
+// END Review Class
 
 int main() {
-   Reviews reviewList;
+   Review dishReview; // declare a variable of Reivew data type
+   dishReview.PrintReview(); // What is the output?
 
-   reviewList.InputReviews();
+   string dishName;
+   int dishRating;
+   string dishComment;
 
-   reviewList.PrintAllReviews();
-   
+   /* Get user's input for one review */
+   cout << "Enter dish name: ";
+   getline(cin >> ws, dishName);
+   cout << "Enter rating: ";
+   cin >> dishRating;
+   cout << "Enter your comment: ";
+   getline(cin >> ws, dishComment);
+   dishReview.SetReview(dishName, dishRating, dishComment);
+
+   /* Print out review */
+   dishReview.PrintReview();
+
    return 0;
 }
